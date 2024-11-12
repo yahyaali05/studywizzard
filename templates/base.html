@@ -1,19 +1,37 @@
-<!doctype html>
-<html lang=en>
-
-<head>
-    <title>{% block TITLE %}{% endblock %} - To-Do App</title>
-</head>
-
 <body>
-<nav>
-    <h1>To-Do App</h1>
-    <a href="{{ url_for('lists') }}">Lists</a>
-</nav>
-<section class="content">
-    <header>{% block HEADER %}{% endblock %}</header>
-    {% block CONTENT %}{% endblock %}
-</section>
+    <div class="container">
+        <!-- Flash-Messages anzeigen -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-danger">
+                    {% for category, message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+       
+        <header>
+            <h1>StudyWizards</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Startseite</a></li>
+                    <li><a href="/about">Über</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/insert/sample">Beispiel-Karteikarten</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            <p>&copy; 2024 StudyWizards</p>
+        </footer>
+    </div>
 </body>
 
-</html>
