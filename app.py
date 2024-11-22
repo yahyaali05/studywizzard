@@ -1,7 +1,8 @@
 import os
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, session, flash
 import db
+from db import get_db_con
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 # Flask-Anwendung initialisieren
 app = Flask(__name__)
@@ -53,17 +54,11 @@ def run_insert_sample():
 
 @app.route('/view_flashcards')
 def view_flashcards():
-    if 'user_id' in session:
-        user_id = session['user_id']
-        flashcards = get_flashcards_for_user(user_id)  # Karteikarten aus der DB holen
-        return render_template('view_flashcards.html', flashcards=flashcards)
-    return redirect(url_for('login'))  # Wenn der Benutzer nicht eingeloggt ist, zurück zur Login-Seite
-
     user_id = session.get('user_id')
-    if not user_id:
+    if user_id is None:
+        flash('Du musst eingeloggt sein, um deine Karteikarten zu sehen.', 'danger')
         return redirect(url_for('login'))
-    
-    flashcards = db.get_flashcards_for_user(user_id)
+    flashcards = db.get_flashcards_for_user(user_id)  # Holen der Karteikarten für den Benutzer
     return render_template('view_flashcards.html', flashcards=flashcards)
 
 @app.route('/register', methods=['GET', 'POST'])
