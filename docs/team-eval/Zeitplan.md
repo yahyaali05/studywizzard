@@ -4,7 +4,7 @@ nav_order: 3
 ---
 
 {: .label }
-[Projektteam]
+[Yahya Ali, Anas Louh]
 
 {: .no_toc }
 # Projektzeitplan: 14.10. - 22.11.
