@@ -44,15 +44,18 @@ def check_user_credentials(username, password):
         return user['id']
     return None
 
+# Hole die Flashcards für einen Benutzer
 def get_flashcards_for_user(user_id):
     db_con = get_db_con()
     flashcards = db_con.execute('''
         SELECT subject, question, answer FROM flashcards WHERE user_id = ?
     ''', (user_id,)).fetchall()
     return flashcards
+
+# Beispiel-Daten einfügen
 def insert_sample(user_id):
     db_con = get_db_con()
-    
+
     # Überprüfen, ob der Benutzer bereits Karteikarten hat
     existing_flashcards = db_con.execute('''SELECT id FROM flashcards WHERE user_id = ?''', (user_id,)).fetchall()
     if existing_flashcards:
@@ -82,35 +85,6 @@ def insert_sample(user_id):
     
     db_con.commit()
 
-
-
-    # Überprüfen, ob 'user1' bereits existiert
-    if not username_exists('user1'):
-        db_con.execute(''' 
-            INSERT INTO users (username, password) VALUES ('user1', 'password123')
-        ''')
-    if not username_exists('user2'):
-        db_con.execute(''' 
-            INSERT INTO users (username, password) VALUES ('user2', 'password456')
-        ''')
-
-    db_con.commit()
-
-    # Flashcards für Benutzer 1 einfügen (falls sie nicht existieren)
-    db_con.execute(''' 
-        INSERT INTO flashcards (user_id, subject, question, answer)
-        VALUES (1, 'Math', 'Was ist 2 + 2?', '4')
-    ''')
-    db_con.execute(''' 
-        INSERT INTO flashcards (user_id, subject, question, answer)
-        VALUES (1, 'History', 'Wer war Napoleon?', 'Ein französischer Kaiser')
-    ''')
-
-    db_con.commit()
-
 # Initialisiert die Datenbank und erstellt die Tabellen
 def init_db():
-    db_con = get_db_con()
-    with current_app.open_resource('sql/create_tables.sql', mode='r') as f:
-        db_con.executescript(f.read())  # Führt das SQL-Skript aus, um Tabellen zu erstellen
-    db_con.commit()
+    close_db_con
