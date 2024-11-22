@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <a href="{{ url_for('view_flashcards') }}">Zu den Karteikarten</a>
-    <h2>Beispiel-Daten eingefügt</h2>
-    <p>Die Beispiel-Daten wurden erfolgreich in die Datenbank eingefügt. Du kannst nun mit dem Lernen beginnen!</p>
+    <div class="container">
+        <h2>Beispiel-Daten erfolgreich eingefügt!</h2>
+        <p>Die Beispiel-Daten wurden in die Datenbank eingefügt. Du kannst jetzt deine Karteikarten ansehen und lernen!</p>
+        
+        <a href="{{ url_for('flashcards') }}" class="btn btn-primary">Zu den Karteikarten</a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Zurück zur Startseite</a>
+    </div>
 {% endblock %}
