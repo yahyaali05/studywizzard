@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Deine Karteikarten</h2>
+    
+    {% if flashcards %}
+        {% for card in flashcards %}
+            <div>
+                <h3>{{ card.subject }}</h3>  <!-- Der "subject"-Feldname sollte stimmen -->
+                <div><strong>Frage:</strong> {{ card.question }}</div>
+                <div id="answer-{{ loop.index }}" style="display: none;">
+                    <strong>Antwort:</strong> {{ card.answer }}
+                </div>
+                <script>
+                    function toggleAnswer(id) {
+                        const answerElement = document.getElementById('answer-' + id);
+                        answerElement.style.display = answerElement.style.display === 'none' ? 'block' : 'none';
+                    }
+                </script>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Es wurden keine Karteikarten gefunden.</p>
+    {% endif %}
+
+    <script>
+        function toggleAnswer(id) {
+            const answerElement = document.getElementById('answer-' + id);
+            answerElement.style.display = answerElement.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+{% endblock %}
+
