@@ -2,21 +2,16 @@
 
 {% block content %}
     <h2>Deine Karteikarten</h2>
-    
+
     {% if flashcards %}
         {% for card in flashcards %}
             <div>
-                <h3>{{ card.subject }}</h3>  <!-- Der "subject"-Feldname sollte stimmen -->
-                <div><strong>Frage:</strong> {{ card.question }}</div>
+                <h3>{{ card['subject'] }}</h3>
+                <div><strong>Frage:</strong> {{ card['question'] }}</div>
                 <div id="answer-{{ loop.index }}" style="display: none;">
-                    <strong>Antwort:</strong> {{ card.answer }}
+                    <strong>Antwort:</strong> {{ card['answer'] }}
                 </div>
-                <script>
-                    function toggleAnswer(id) {
-                        const answerElement = document.getElementById('answer-' + id);
-                        answerElement.style.display = answerElement.style.display === 'none' ? 'block' : 'none';
-                    }
-                </script>
+                <button onclick="toggleAnswer({{ loop.index }})">Antwort anzeigen</button>
             </div>
         {% endfor %}
     {% else %}
@@ -26,8 +21,11 @@
     <script>
         function toggleAnswer(id) {
             const answerElement = document.getElementById('answer-' + id);
-            answerElement.style.display = answerElement.style.display === 'none' ? 'block' : 'none';
+            if (answerElement.style.display === 'none') {
+                answerElement.style.display = 'block';
+            } else {
+                answerElement.style.display = 'none';
+            }
         }
     </script>
 {% endblock %}
-
