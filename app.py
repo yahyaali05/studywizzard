@@ -79,5 +79,5 @@ def init_db_command():
     db.init_db()
     print("Datenbank erfolgreich initialisiert!")
 
-if __name__ == '__main__': #Nayon King
+if __name__ == '__main__': 
     app.run(debug=True)
