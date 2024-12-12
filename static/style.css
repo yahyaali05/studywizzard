@@ -1,0 +1,194 @@
+/* Allgemeine Stile */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Hauptcontainer mit Grid-Layout */
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: 
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    flex-grow: 1;
+    gap: 10px;
+    padding: 15px;
+    max-width: 1200px; /* Maximale Breite für größere Bildschirme */
+    margin: 0 auto; /* Zentriert den Inhalt */
+}
+
+/* Header-Stil */
+header {
+    grid-area: header;
+    background-color: #4caf50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+nav {
+    grid-area: nav;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-right: 2px solid #ddd;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 10px 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #4caf50;
+}
+
+/* Hauptinhalt */
+main {
+    grid-area: main;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Seitliches Panel */
+aside {
+    grid-area: aside;
+    background-color: #e9f7ef;
+    padding: 15px;
+    border-left: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Kartenlayout - Optimierung für größere Bildschirme */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Jede Karte soll maximal 45% der Breite auf größeren Bildschirmen einnehmen */
+.col-md-6 {
+    flex: 1 1 45%;
+    max-width: 45%;
+    box-sizing: border-box;
+}
+
+/* Für sehr große Bildschirme (z.B. Desktops) */
+@media (min-width: 1200px) {
+    .col-md-6 {
+        max-width: 30%; /* Für sehr große Bildschirme wird die Karte auf max. 30% der Breite begrenzt */
+    }
+}
+
+/* Für mittlere Bildschirme (Tablets, etc.) */
+@media (max-width: 1200px) {
+    .col-md-6 {
+        max-width: 48%; /* Auf mittelgroßen Geräten 2 Karten nebeneinander */
+    }
+}
+
+/* Für kleine Bildschirme (Handys) */
+@media (max-width: 768px) {
+    .col-md-6 {
+        max-width: 100%; /* Auf kleinen Geräten wird jede Karte auf die ganze Breite gesetzt */
+    }
+}
+
+/* Box-Stil für die Karten */
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Hover-Effekt für Karten */
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Kartenüberschrift */
+.card-header {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Karteninhalt */
+.card-body {
+    padding: 15px;
+}
+
+/* Button für die Antwortanzeige */
+button {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Formular für Löschen der Karte */
+form button {
+    font-size: 12px;
+    padding: 6px 10px;
+    margin-top: 10px;
+    background-color: #dc3545;
+}
+
+form button:hover {
+    background-color: #c82333;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Abstand zwischen den Elementen */
+}
