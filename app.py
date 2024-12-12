@@ -134,7 +134,12 @@ def delete_flashcard(flashcard_id):
 def init_db_command():
     db.init_db()
     print("Datenbank erfolgreich initialisiert!")
+<<<<<<< HEAD
     
 # Starte die Flask-App
 if __name__ == '__main__':
+=======
+
+if __name__ == '__main__': 
+>>>>>>> d1cce778b1645af1a0c09a1c3a2208f599383dac
     app.run(debug=True)
