@@ -1,30 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Login</h2>
-    
-    <!-- Fehlermeldung anzeigen, wenn vorhanden -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="alert alert-danger">
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="width: 100%; max-width: 500px; border-radius: 10px;">
+        <h2 class="text-center mb-4">Login</h2>
+        
+        <!-- Flash-Messages anzeigen -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
                 {% for category, message in messages %}
-                    <p>{{ message }}</p>
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% elif category == 'success' %}
+                        <div class="alert alert-success">{{ message }}</div>
+                    {% elif category == 'warning' %}
+                        <div class="alert alert-warning">{{ message }}</div>
+                    {% endif %}
                 {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Login-Formular -->
+        <form action="{{ url_for('login') }}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Benutzername</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Dein Benutzername" required>
             </div>
-        {% endif %}
-    {% endwith %}
-
-    <form action="/login" method="post">
-        <div class="form-group">
-            <label for="username">Benutzername</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Einloggen</button>
-    </form>
-
-    <p>Kein Konto? <a href="{{ url_for('register') }}">Registrieren</a></p>
+            <div class="mb-3">
+                <label for="password" class="form-label">Passwort</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Dein Passwort" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2">Einloggen</button>
+        </form>
+        
+        <p class="text-center mt-3">Kein Konto? <a href="{{ url_for('register') }}">Jetzt registrieren</a></p>
+    </div>
+</div>
 {% endblock %}

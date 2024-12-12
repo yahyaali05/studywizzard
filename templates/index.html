@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="text-center my-5">
     <h2>Willkommen bei StudyWizards!</h2>
-    <p>Dies ist die Startseite unserer Lernplattform. Viel Spaß beim Lernen!</p>
-    <p><a href="{{ url_for('register') }}">Jetzt registrieren</a></p>
+    <p class="mt-3">Dies ist die Startseite unserer Lernplattform. Viel Spaß beim Lernen!</p>
+    <p class="mt-4">
+        <a href="{{ url_for('register') }}" class="btn btn-primary">Jetzt registrieren</a>
+    </p>
+</div>
 {% endblock %}

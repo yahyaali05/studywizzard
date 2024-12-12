@@ -1,31 +1,49 @@
 {% extends "base.html" %}
-
 {% block content %}
-    <h2>Deine Karteikarten</h2>
 
-    {% if flashcards %}
-        {% for card in flashcards %}
-            <div>
-                <h3>{{ card['subject'] }}</h3>
-                <div><strong>Frage:</strong> {{ card['question'] }}</div>
-                <div id="answer-{{ loop.index }}" style="display: none;">
-                    <strong>Antwort:</strong> {{ card['answer'] }}
+<div class="d-grid gap-2 d-md-block mb-3">
+    <a class="btn btn-success" role="button" href="{{ url_for('create_flashcard') }}">Neue Karteikarte erstellen</a>
+</div>
+<div class="row">
+    {% for card in flashcards %}
+        <div class="col-md-12 mb-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="card-title">{{ card['subject'] }}</h5>
                 </div>
-                <button onclick="toggleAnswer({{ loop.index }})">Antwort anzeigen</button>
+                <div class="card-body">
+                    <p><strong>Frage:</strong> {{ card['question'] }}</p>
+                    <p id="answer-{{ loop.index }}" class="text-muted" style="display: none;">
+                        <strong>Antwort:</strong> {{ card['answer'] }}
+                    </p>
+                    <button id="toggle-button-{{ loop.index }}" class="btn btn-outline-info btn-sm" onclick="toggleAnswer('{{ loop.index }}')">
+                        Antwort anzeigen
+                    </button>
+                    <!-- Löschen-Button -->
+                    <form action="{{ url_for('delete_flashcard', flashcard_id=card['id']) }}" method="POST" class="mt-2">
+                        <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
+                    </form>
+                </div>
             </div>
-        {% endfor %}
-    {% else %}
-        <p>Es wurden keine Karteikarten gefunden.</p>
-    {% endif %}
+        </div>
+    {% endfor %}
+</div>
 
-    <script>
-        function toggleAnswer(id) {
-            const answerElement = document.getElementById('answer-' + id);
-            if (answerElement.style.display === 'none') {
-                answerElement.style.display = 'block';
-            } else {
-                answerElement.style.display = 'none';
-            }
+<script>
+    // Funktion zum Umschalten der Antwortanzeige
+    function toggleAnswer(index) {
+        // Holen des Antwortbereichs und des Buttons anhand der übergebenen Index-ID
+        var answer = document.getElementById("answer-" + index);
+        var button = document.getElementById("toggle-button-" + index);
+
+        // Umschalten der Sichtbarkeit der Antwort
+        if (answer.style.display === "none") {
+            answer.style.display = "block";  // Antwort anzeigen
+            button.textContent = "Antwort verstecken";  // Button-Text ändern
+        } else {
+            answer.style.display = "none";  // Antwort verstecken
+            button.textContent = "Antwort anzeigen";  // Button-Text zurücksetzen
         }
-    </script>
+    }
+</script>
 {% endblock %}

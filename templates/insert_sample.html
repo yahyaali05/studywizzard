@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container">
-        <h2>Beispiel-Daten erfolgreich eingefügt!</h2>
-        <p>Die Beispiel-Daten wurden in die Datenbank eingefügt. Du kannst jetzt deine Karteikarten ansehen und lernen!</p>
-        
-        <a href="{{ url_for('flashcards') }}" class="btn btn-primary">Zu den Karteikarten</a>
-        <a href="{{ url_for('index') }}" class="btn btn-secondary">Zurück zur Startseite</a>
+<div class="container mt-5">
+    <div class="alert alert-success text-center" role="alert">
+        <h2 class="mb-3">Beispiel-Daten erfolgreich eingefügt!</h2>
+        <p class="mb-4">
+            Die Beispiel-Daten wurden erfolgreich in die Datenbank eingefügt. Du kannst jetzt deine Karteikarten ansehen und mit dem Lernen beginnen!
+        </p>
+        <div class="d-flex justify-content-center">
+            <div class="btn-group" role="group">
+                <a href="{{ url_for('view_flashcards') }}" class="btn btn-primary btn-lg">Zu den Karteikarten</a>
+                <a href="{{ url_for('index') }}" class="btn btn-secondary btn-lg">Zurück zur Startseite</a>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}
