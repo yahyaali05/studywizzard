@@ -1,5 +1,5 @@
 # studywizzard
-# our webapp
+Unsere Internetseite ist eine Englisch Nachhilfeseite.
 
 "Python -m venv venv" in der Konsole eingeben.
 Danach ein Python Interpreten auswählen.
