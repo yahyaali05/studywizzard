@@ -3,19 +3,24 @@ title: Home
 nav_order: 0
 ---
 
-{: .attention }
-> Any text enclosed by `[ ]` are placeholders, including the opening and closing brackets.
->
-> You may delete this `attention` box.
+# StudyWizard
 
-# [Project Name]
-Studywizzard
+StudyWizard ist eine Lernanwendung, die deutschen Schülern hilft, ihre Englischkenntnisse durch ein effektives flashcard-basiertes System zu verbessern.
 
-[Project description]
+## Projektbeschreibung
+
+Das Herzstück von **StudyWizard** ist das adaptive Flashcard-Lernen:  
+- Bereits bekannte Vokabelkarten werden nicht erneut angezeigt.  
+- Unbekannte Vokabelkarten werden wiederholt, bis sie beherrscht werden.  
+
+Zusätzlich gibt es eine **Testfunktion**, bei der Nutzer ihr Wissen anhand von Flashcards testen können. Nach Abschluss des Tests werden sofort die Ergebnisse angezeigt.  
+
+Die App bietet verschiedene **Lernstufen** für Schüler der Klassen **7, 8, 9 und 10**, wobei jede Stufe Vokabeln mit unterschiedlichem Schwierigkeitsgrad enthält.  
+Außerdem sind die Vokabeln in **Kategorien** wie Sport, Haushalt usw. unterteilt, sodass gezieltes Lernen nach Interessensgebieten möglich ist.  
 
 ## Team members
 
-### [Jane Dane]
+### Anas Louh
 
 About
 : Some info about Jane
@@ -23,7 +28,7 @@ About
 Matr.-Nr.
 : 1234567
 
-### [Joe Doe]
+### Yahya Ali
 
 About
 : Some info about Joe
