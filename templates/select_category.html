@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% block content %}
+<style>
+  body {
+    background-color: #f0fdf4;
+  }
+
+  .custom-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
+    padding: 25px;
+  }
+
+  .btn-green {
+    background: linear-gradient(to right, #28a745, #218838);
+    border: none;
+    color: white;
+  }
+
+  .btn-green:hover {
+    /* background: #1e7e34; */
+    color: white;
+  }
+
+  .form-control {
+    border: 2px solid #28a745;
+    border-radius: 8px;
+  }
+  .btn-greenn {
+    background: linear-gradient(to right, #28a745, #218838);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 5px;
+  }
+  .btn-greenn:hover {
+    /* background: #1e7e34; */
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.3);
+    transform: scale(1.01);
+  }
+
+  .form-control:focus {
+    border-color: #218838;
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+  }
+</style>
+<h2 style="text-align: center; margin-bottom: 20px">
+  Wählen Sie eine Kategorie aus
+</h2>
+<form method="post" style="display: flex; justify-content: center">
+  {% for category in categories %}
+  <button
+    class="btn-greenn"
+    type="submit"
+    name="category"
+    value="{{ category }}"
+  >
+    {{ category }}
+  </button>
+  {% endfor %}
+</form>
+
+<form
+  method="POST"
+  class="custom-card mt-4"
+  style="max-width: 600px; margin: 0 auto"
+>
+  <div class="mb-3">
+    <label
+      for="new_category"
+      class="form-label fw-bold text-dark d-flex justify-content-start gap-2 align-items-center"
+    >
+      <i class="fa-solid fa-plus"></i> Eine neue Thema hinzufügen
+    </label>
+    <input
+      type="text"
+      class="form-control"
+      id="new_category"
+      name="new_category"
+      placeholder="Neue Themaname"
+    />
+  </div>
+  <button
+    type="submit"
+    class="btn btn-green d-flex justify-content-start gap-2 align-items-center"
+  >
+    <i class="fa-solid fa-plus-circle"></i> Thema hinzufügen
+  </button>
+</form>
+{% endblock %}

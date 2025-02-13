@@ -1,0 +1,140 @@
+{% extends "base.html" %} {% block content %}
+
+<style>
+  body {
+    background-color: #f0fdf4;
+  }
+
+  .custom-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
+    padding: 25px;
+  }
+
+  .btn-green {
+    background: linear-gradient(to right, #28a745, #218838);
+    border: none;
+    color: white;
+  }
+
+  .btn-green:hover {
+    /* background: #1e7e34; */
+    color: white;
+  }
+
+  .form-control {
+    border: 2px solid #28a745;
+    border-radius: 8px;
+  }
+
+  .form-control:focus {
+    border-color: #218838;
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+  }
+</style>
+
+<div class="container" style="margin-bottom: 200px">
+  <h1 class="text-center text-success display-4 mb-5">
+    <i class="fa-solid fa-filter"></i> Filter Karteikarten
+  </h1>
+
+  <form
+    method="POST"
+    class="custom-card"
+    style="max-width: 600px; margin: 0 auto"
+  >
+    <!-- Category Dropdown -->
+    <div class="mb-4">
+      <label
+        for="category"
+        class="form-label fw-bold text-dark d-flex justify-content-start align-items-center gap-2"
+      >
+        <i class="fa-solid fa-list"></i> Kategorie:
+      </label>
+      <select
+        id="category"
+        name="category"
+        class="form-control form-control-lg"
+        required
+      >
+        <option value="" disabled selected>Wähle eine Kategorie</option>
+        {% for category in categories %}
+        <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Grade Level Radio Buttons -->
+    <div class="mb-4">
+      <label
+        class="form-label fw-bold d-flex justify-content-start gap-2 align-items-center text-dark"
+      >
+        <i class="fa-solid fa-school"></i> Klassenstufe:
+      </label>
+      <div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="grade_level"
+            id="grade7"
+            value="7"
+            required
+          />
+          <label class="form-check-label" for="grade7">Klasse 7</label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="grade_level"
+            id="grade10"
+            value="10"
+          />
+          <label class="form-check-label" for="grade10">Klasse 10</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-grid">
+      <button
+        type="submit"
+        class="btn btn-green btn-lg shadow-sm fw-bold d-flex justify-content-start gap-2 align-items-center"
+      >
+        <i class="fa-solid fa-search"></i> Karteikarten filtern
+      </button>
+    </div>
+  </form>
+
+  <!-- Add New Category -->
+  <form
+    method="POST"
+    class="custom-card mt-4"
+    style="max-width: 600px; margin: 0 auto"
+  >
+    <div class="mb-3">
+      <label
+        for="new_category"
+        class="form-label fw-bold text-dark d-flex justify-content-start gap-2 align-items-center"
+      >
+        <i class="fa-solid fa-plus"></i> Eine neue Kategorie hinzufügen
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="new_category"
+        name="new_category"
+        placeholder="Neue Kategoriename"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-green d-flex justify-content-start gap-2 align-items-center"
+    >
+      <i class="fa-solid fa-plus-circle"></i> Thema hinzufügen
+    </button>
+  </form>
+</div>
+{% endblock %}
