@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block content %}
+<style>
+  .btn-green {
+    background: linear-gradient(to right, #28a745, #218838);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 5px;
+  }
+  .btn-greenn {
+    background: linear-gradient(to right, #28a745, #218838);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 5px;
+  }
+
+  .btn-green:hover {
+    /* background: #1e7e34; */
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.3);
+    transform: scale(1.01);
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>
+<h2 style="text-align: center; margin-bottom: 20px">Wählen Sie ein Grad aus</h2>
+<form method="post">
+  {% for grade in grades %}
+  <button
+    type="submit"
+    name="grade_level"
+    value="{{ grade }}"
+    class="btn-green"
+  >
+    {{ grade }}
+  </button>
+  {% endfor %}
+</form>
+
+<div class="custom-card mt-4" style="max-width: 600px; margin: 0 auto">
+  <a
+    href="{{ url_for('create_flashcard') }}"
+    type="submit"
+    class="btn btn-greenn text-white d-flex justify-content-start gap-2 align-items-center"
+  >
+    <i class="fa-solid fa-plus-circle"></i> Neue Karteikarte erstellen
+  </a>
+</div>
+
+{% endblock %}

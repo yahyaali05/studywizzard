@@ -1,65 +1,76 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="container" style="max-width: 600px; margin-bottom: 200px">
+  <h2 class="text-center mb-4">Registriere dich bei StudyWizards</h2>
 
-{% block content %}
-<div class="container mt-5" style="max-width: 600px;">
-    <h2 class="text-center mb-4">Registriere dich bei StudyWizards</h2>
+  <!-- Flash-Messages anzeigen -->
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %} {% if category == 'error'
+  %}
+  <div class="alert alert-danger mt-3">{{ message }}</div>
+  {% elif category == 'success' %}
+  <div class="alert alert-success mt-3">{{ message }}</div>
+  {% elif category == 'warning' %}
+  <div class="alert alert-warning mt-3">{{ message }}</div>
+  {% endif %} {% endfor %} {% endif %} {% endwith %}
 
-    <!-- Flash-Messages anzeigen -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            {% if category == 'error' %}
-                <div class="alert alert-danger mt-3">{{ message }}</div>
-            {% elif category == 'success' %}
-                <div class="alert alert-success mt-3">{{ message }}</div>
-            {% elif category == 'warning' %}
-                <div class="alert alert-warning mt-3">{{ message }}</div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-    {% endwith %}
+  <!-- Registrierungsformular -->
+  <form
+    action="{{ url_for('register') }}"
+    method="POST"
+    class="mt-4 p-4 shadow-lg bg-white rounded"
+  >
+    <div class="mb-4">
+      <label for="username" class="form-label">Benutzername</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        placeholder="Wähle einen Benutzernamen"
+        required
+        style="font-size: 16px; padding: 12px"
+      />
+    </div>
 
-    <!-- Registrierungsformular -->
-    <form action="{{ url_for('register') }}" method="POST" class="mt-4 p-4 shadow-lg bg-white rounded">
-        <div class="mb-4">
-            <label for="username" class="form-label">Benutzername</label>
-            <input 
-                type="text" 
-                class="form-control" 
-                id="username" 
-                name="username" 
-                placeholder="Wähle einen Benutzernamen" 
-                required 
-                style="font-size: 16px; padding: 12px;">
-        </div>
+    <div class="mb-4">
+      <label for="password" class="form-label">Passwort</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Wähle ein Passwort"
+        required
+        style="font-size: 16px; padding: 12px"
+      />
+    </div>
 
-        <div class="mb-4">
-            <label for="password" class="form-label">Passwort</label>
-            <input 
-                type="password" 
-                class="form-control" 
-                id="password" 
-                name="password" 
-                placeholder="Wähle ein Passwort" 
-                required 
-                style="font-size: 16px; padding: 12px;">
-        </div>
+    <div class="mb-4">
+      <label for="confirm_password" class="form-label"
+        >Passwort bestätigen</label
+      >
+      <input
+        type="password"
+        class="form-control"
+        id="confirm_password"
+        name="confirm_password"
+        placeholder="Bestätige dein Passwort"
+        required
+        style="font-size: 16px; padding: 12px"
+      />
+    </div>
 
-        <div class="mb-4">
-            <label for="confirm_password" class="form-label">Passwort bestätigen</label>
-            <input 
-                type="password" 
-                class="form-control" 
-                id="confirm_password" 
-                name="confirm_password" 
-                placeholder="Bestätige dein Passwort" 
-                required 
-                style="font-size: 16px; padding: 12px;">
-        </div>
+    <button
+      type="submit"
+      class="btn btn-success w-100 py-3"
+      style="font-size: 18px"
+    >
+      Registrieren
+    </button>
+  </form>
 
-        <button type="submit" class="btn btn-success w-100 py-3" style="font-size: 18px;">Registrieren</button>
-    </form>
-
-    <p class="text-center mt-4">Bereits registriert? <a href="{{ url_for('login') }}">Hier einloggen</a></p>
+  <p class="text-center mt-4">
+    Bereits registriert? <a href="{{ url_for('login') }}">Hier einloggen</a>
+  </p>
 </div>
 {% endblock %}

@@ -1,11 +1,74 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="container text-center" style="margin-bottom: 200px">
+  <!-- Welcome Section -->
+  <h1 class="display-4 fw-bold mb-4" style="color: #28a745">
+    Willkommen bei StudyWizards!
+  </h1>
+  <p class="lead text-secondary">
+    Deine Plattform für interaktives Lernen und erfolgreiche Vorbereitung. Viel
+    Spaß beim Lernen!
+  </p>
 
-{% block content %}
-<div class="text-center my-5">
-    <h2>Willkommen bei StudyWizards!</h2>
-    <p class="mt-3">Dies ist die Startseite unserer Lernplattform. Viel Spaß beim Lernen!</p>
-    <p class="mt-4">
-        <a href="{{ url_for('register') }}" class="btn btn-primary">Jetzt registrieren</a>
-    </p>
+  <!-- Call-to-Action Buttons -->
+  <div class="mt-5 d-flex align-items-center gap-2 justify-content-center">
+    <a
+      href="{{ url_for('run_insert_sample') }}"
+      class="btn btn-primary btn-lg shadow-sm me-3 d-flex align-items-center gap-2 justify-content-center"
+    >
+      <i class="bi bi-book-fill"></i> Beispiel-Karteikarten
+    </a>
+    <a
+      href="{{ url_for('run_insert_sample') }}"
+      class="btn btn-success btn-lg shadow-sm d-flex align-items-center gap-2 justify-content-center"
+    >
+      <i class="bi bi-play-circle-fill"></i> Starte den Testmodus
+    </a>
+  </div>
+
+  <!-- Features Section -->
+  <div class="mt-5">
+    <h2 class="text-primary fw-bold mb-4">Was bietet StudyWizards?</h2>
+    <div class="row text-start">
+      <div class="col-md-4">
+        <div class="card shadow border-0">
+          <div class="card-body">
+            <h5 class="card-title text-success">
+              <i class="bi bi-lightbulb-fill"></i> Interaktive Karteikarten
+            </h5>
+            <p class="card-text text-secondary">
+              Lerne mit unseren dynamischen Karteikarten und verbessere dein
+              Wissen Schritt für Schritt.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow border-0">
+          <div class="card-body">
+            <h5 class="card-title text-info">
+              <i class="bi bi-bar-chart-fill"></i> Fortschrittsanzeige
+            </h5>
+            <p class="card-text text-secondary">
+              Verfolge deinen Lernfortschritt und erkenne deine Erfolge in
+              Echtzeit.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow border-0">
+          <div class="card-body">
+            <h5 class="card-title text-warning">
+              <i class="bi bi-trophy-fill"></i> Erfolgsgarantie
+            </h5>
+            <p class="card-text text-secondary">
+              Lerne effektiver und bereite dich optimal auf Prüfungen vor, mit
+              unserer bewährten Methode.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -1,20 +1,122 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<div class="container" style="margin-bottom: 200px">
+  <h1 class="text-center display-4 mb-4" style="color: #28a745">
+    Willkommen, {{ user['username'] }}!
+  </h1>
+  <p class="text-center lead text-secondary">
+    Schön, dich wiederzusehen! Hier sind deine Benutzerdaten.
+  </p>
 
-{% block content %}
-<div class="container mt-5">
-    <h2 class="text-center">Willkommen, {{ user['username'] }}!</h2>
-    
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Benutzerdaten:</h4>
-            <ul>
-                <li><strong>Username:</strong> {{ user['username'] }}</li>
-            </ul>
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h4 class="card-title text-primary d-flex align-items-center gap-2">
+            <i class="bi bi-person-circle"></i> Benutzerdaten
+          </h4>
+          <ul class="list-unstyled fs-5">
+            <li><strong>Username:</strong> {{ user['username'] }}</li>
+          </ul>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="d-flex justify-content-end mt-4">
-        <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+  <!-- Test History Table -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h4 class="card-title text-success">
+            <i class="bi bi-list-check"></i> Testverlauf
+          </h4>
+          {% if test_history %}
+          <div class="table-responsive">
+            <table class="table table-striped text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Datum</th>
+                  <th>Gesamtfragen</th>
+                  <th>Korrekte Antworten</th>
+                  <th>Falsche Antworten</th>
+                  <th>Erfolgsrate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for test in test_history %}
+                <tr>
+                  <td>{{ test['date_taken'] }}</td>
+                  <td>{{ test['total_questions'] }}</td>
+                  <td class="text-success fw-bold">
+                    {{ test['correct_answers'] }}
+                  </td>
+                  <td class="text-danger fw-bold">
+                    {{ test['incorrect_answers'] }}
+                  </td>
+                  <td class="fw-bold">
+                    {{ (test['correct_answers'] / test['total_questions'] *
+                    100)|round(2) }}%
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <p class="text-center text-muted">
+            Du hast noch keine Tests abgeschlossen.
+          </p>
+          {% endif %}
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Overall Test Statistics -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h4 class="card-title text-info">
+            <i class="bi bi-bar-chart-line"></i> Gesamtstatistiken
+          </h4>
+          <ul class="list-unstyled fs-5">
+            <li>
+              <strong>Gesamte Tests:</strong> {{ test_stats['total_tests'] or 0
+              }}
+            </li>
+            <li>
+              <strong>Gesamtfragen:</strong> {{ test_stats['total_questions'] or
+              0 }}
+            </li>
+            <li>
+              <strong>Korrekte Antworten:</strong> {{
+              test_stats['total_correct'] or 0 }}
+            </li>
+            <li>
+              <strong>Falsche Antworten:</strong> {{
+              test_stats['total_incorrect'] or 0 }}
+            </li>
+            <li>
+              <strong>Durchschnittliche Erfolgsrate:</strong>
+              {% if test_stats['total_questions'] %} {{
+              (test_stats['total_correct'] / test_stats['total_questions'] *
+              100)|round(2) }}% {% else %} 0% {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Button -->
+  <div class="d-flex justify-content-center mt-5">
+    <a
+      href="{{ url_for('logout') }}"
+      class="btn btn-danger btn-lg shadow d-flex align-items-center gap-2"
+    >
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </a>
+  </div>
 </div>
 {% endblock %}
