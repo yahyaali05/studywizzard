@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block content %}
+<h2 class="text-center">Testergebnisse</h2>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <p><strong>Korrekte Antworten:</strong> {{ result['correct_answers'] }}</p>
+    <p><strong>Falsche Antworten:</strong> {{ result['incorrect_answers'] }}</p>
+    <p><strong>Gesamtfragen:</strong> {{ result['total_questions'] }}</p>
+    <p><strong>Testdatum:</strong> {{ result['test_date'] }}</p>
+  </div>
+</div>
+
+<h3 class="mt-4">Fortschritt nach Karteikarte</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Fach</th>
+      <th>Frage</th>
+      <th>Antwort</th>
+      <th>Anzahl der Versuche</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in progress %}
+    <tr>
+      <td>{{ row['subject'] }}</td>
+      <td>{{ row['question'] }}</td>
+      <td>{{ row['answer'] }}</td>
+      <td>{{ row['review_count'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
