@@ -42,10 +42,11 @@ CREATE TABLE IF NOT EXISTS test_results (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     user_id INTEGER NOT NULL,
     UNIQUE(name, user_id),
     FOREIGN KEY(user_id) REFERENCES users(id)
 );
+
