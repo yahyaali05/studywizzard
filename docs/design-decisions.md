@@ -1,92 +1,121 @@
 ---
-title: Design Decisions
+title: Design decisions
 nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+StudyWizard
 
 {: .no_toc }
-# Design decisions
+# Designentscheidungen
 
 <details open markdown="block">
 {: .text-delta }
-<summary>Table of contents</summary>
+<summary>Inhaltsverzeichnis</summary>
 + ToC
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: Wahl des Frontend-Designs
 
 ### Meta
 
-Status
-: **Work in progress** - Decided - Obsolete
+Status  
+: **Entschieden**  
 
-Updated
-: DD-MMM-YYYY
+Aktualisiert  
+: 08-Feb-2025  
 
-### Problem statement
+### Problemstellung
 
-[Describe the problem to be solved or the goal to be achieved. Include relevant context information.]
+Für die Benutzeroberfläche von StudyWizard benötigen wir ein Framework, das eine schnelle Entwicklung ermöglicht und gleichzeitig ein modernes, responsives Design unterstützt. Eine vollständig maßgeschneiderte CSS- und JavaScript-Implementierung wäre zu zeitaufwendig, daher brauchen wir eine effiziente Lösung, die mit Flask gut kompatibel ist.
 
-### Decision
+### Entscheidung
 
-[Describe **which** design decision was taken for **what reason** and by **whom**.]
+Wir haben uns für **Bootstrap** als CSS-Framework entschieden.
 
-### Regarded options
+- **Gründe:**  
+  - Bootstrap bietet ein **responsives Grid-System**, das die Anpassung an verschiedene Bildschirmgrößen erleichtert.  
+  - Die vordefinierten Komponenten ermöglichen eine **schnelle Entwicklung** mit einem professionellen Design.  
+  - Es ist **leicht zu erlernen** und lässt sich gut mit Flask und Jinja-Templates kombinieren.  
 
-[Describe any possible design decision that will solve the problem. Assess these options, e.g., via a simple pro/con list.]
+*Entscheidung getroffen von:* github.com/deingithub  
 
----
+### In Betracht gezogene Optionen
 
-## [Example, delete this section] 01: How to access the database - SQL or SQLAlchemy 
-
-### Meta
-
-Status
-: Work in progress - **Decided** - Obsolete
-
-Updated
-: 30-Jun-2024
-
-### Problem statement
-
-Should we perform database CRUD (create, read, update, delete) operations by writing plain SQL or by using SQLAlchemy as object-relational mapper?
-
-Our web application is written in Python with Flask and connects to an SQLite database. To complete the current project, this setup is sufficient.
-
-We intend to scale up the application later on, since we see substantial business value in it.
-
-
-
-Therefore, we will likely:
-Therefore, we will likely:
-Therefore, we will likely:
-
-+ Change the database schema multiple times along the way, and
-+ Switch to a more capable database system at some point.
-
-### Decision
-
-We stick with plain SQL.
-
-Our team still has to come to grips with various technologies new to us, like Python and CSS. Adding another element to our stack will slow us down at the moment.
-
-Also, it is likely we will completely re-write the app after MVP validation. This will create the opportunity to revise tech choices in roughly 4-6 months from now.
-*Decision was taken by:* github.com/joe, github.com/jane, github.com/maxi
-
-### Regarded options
-
-We regarded two alternative options:
-
-+ Plain SQL
-+ SQLAlchemy
-
-| Criterion | Plain SQL | SQLAlchemy |
+| Option | Vorteile | Nachteile |
 | --- | --- | --- |
-| **Know-how** | ✔️ We know how to write SQL | ❌ We must learn ORM concept & SQLAlchemy |
-| **Change DB schema** | ❌ SQL scattered across code | ❔ Good: classes, bad: need Alembic on top |
-| **Switch DB engine** | ❌ Different SQL dialect | ✔️ Abstracts away DB engine |
+| **Eigenes CSS + JavaScript** | ✔️ Volle Kontrolle über das Design <br> ✔️ Individuelle Gestaltung möglich | ❌ Zeitaufwendig <br> ❌ Weniger strukturierte Entwicklung |
+| **Bootstrap** | ✔️ Schnelle Entwicklung <br> ✔️ Responsives Design ohne großen Aufwand <br> ✔️ Große Community-Unterstützung | ❌ Weniger Designflexibilität <br> ❌ Größere Stylesheets können die Ladezeit beeinflussen |
 
 ---
+
+## 02: Datenbankwahl
+
+### Meta
+
+Status  
+: **Entschieden**  
+
+Aktualisiert  
+: 08-Feb-2025  
+
+### Problemstellung
+
+Für die Speicherung der Benutzerdaten und Flashcards benötigen wir eine einfache und zuverlässige Datenbank. Die Datenbank sollte sich leicht in Flask integrieren lassen und keine komplexe Einrichtung erfordern.
+
+### Entscheidung
+
+Wir haben uns für **SQLite** als Datenbank entschieden.
+
+- **Gründe:**  
+  - SQLite ist eine **leichtgewichtige Datenbank**, die keine separate Serverinstallation benötigt.  
+  - Sie lässt sich problemlos mit **Flask-SQLAlchemy** verwenden.  
+  - Ideal für kleinere bis mittelgroße Anwendungen wie StudyWizard.  
+
+*Entscheidung getroffen von:* github.com/deingithub  
+
+### In Betracht gezogene Optionen
+
+| Option | Vorteile | Nachteile |
+| --- | --- | --- |
+| **SQLite** | ✔️ Einfach zu integrieren <br> ✔️ Keine Serverkonfiguration nötig <br> ✔️ Perfekt für kleinere Apps | ❌ Skalierbarkeit begrenzt <br> ❌ Keine parallelen Schreibzugriffe möglich |
+| **PostgreSQL** | ✔️ Skalierbar <br> ✔️ Unterstützt parallele Anfragen | ❌ Aufwendigere Einrichtung <br> ❌ Nicht notwendig für eine kleinere Anwendung |
+
+---
+
+## 03: Formularverwaltung
+
+### Meta
+
+Status  
+: **Entschieden**  
+
+Aktualisiert  
+: 08-Feb-2025  
+
+### Problemstellung
+
+Die Anwendung benötigt eine effiziente Möglichkeit zur Verwaltung von Formularen für Benutzereingaben, z. B. zur Registrierung, zum Teststart oder zur Bewertung von Flashcards.
+
+### Entscheidung
+
+Wir haben uns für **Jinja-Forms** entschieden.
+
+- **Gründe:**  
+  - Jinja-Forms lassen sich **direkt in Flask-Vorlagen** einbetten.  
+  - Sie ermöglichen eine **dynamische Formularerstellung** mit variablen Werten.  
+  - Die Verwendung in Kombination mit Bootstrap sorgt für eine **schöne und funktionale UI**.  
+
+*Entscheidung getroffen von:* github.com/deingithub  
+
+### In Betracht gezogene Optionen
+
+| Option | Vorteile | Nachteile |
+| --- | --- | --- |
+| **Jinja-Forms** | ✔️ Direkt in Flask integriert <br> ✔️ Leicht zu verwalten <br> ✔️ Gut kombinierbar mit Bootstrap | ❌ Eingeschränkte Interaktivität <br> ❌ Kein JavaScript-Handling |
+| **WTForms** | ✔️ Erweiterte Validierung <br> ✔️ Besser für komplexe Formulare | ❌ Zusätzliche Bibliothek erforderlich <br> ❌ Komplexer als nötig für unser Projekt |
+
+---
+
+Diese Designentscheidungen stellen sicher, dass **StudyWizard** eine effiziente, wartbare und nutzerfreundliche Anwendung bleibt.
