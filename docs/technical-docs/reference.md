@@ -5,81 +5,219 @@ nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+[StudyWizard Team]
 
 {: .no_toc }
-# Reference documentation
+# Referenz-Dokumentation
 
 {: .attention }
-> This page collects internal functions, routes with their functions, and APIs (if any).
-> 
-> See [Uber](https://developer.uber.com/docs/drivers/references/api) or [PayPal](https://developer.paypal.com/api/rest/) for exemplary high-quality API reference documentation.
+> Diese Seite sammelt interne Funktionen, Routen mit ihren Funktionen und APIs (falls vorhanden).
 >
-> You may delete this `attention` box.
+> Siehe [Uber](https://developer.uber.com/docs/drivers/references/api) oder [PayPal](https://developer.paypal.com/api/rest/) für beispielhafte API-Referenzdokumentationen.
+>
+> Diese Box kann entfernt werden.
 
 <details open markdown="block">
 {: .text-delta }
-<summary>Table of contents</summary>
+<summary>Inhaltsverzeichnis</summary>
 + ToC
 {: toc }
 </details>
 
-## [Section / module]
+## Allgemeine Seiten
 
-### `function_definition()`
+### `index()`
 
-**Route:** `/route/`
+**Route:** `/`
 
-**Methods:** `POST` `GET` `PATCH` `PUT` `DELETE`
+**Methoden:** `GET`
 
-**Purpose:** [Short explanation of what the function does and why]
+**Zweck:** Lädt die Startseite der Anwendung.
 
-**Sample output:**
-
-[Show an image, string output, or similar illustration -- or write NONE if function generates no output]
-
----
-
-## [Example, delete this section] Show to-do lists
-
-### `get_lists()`
-
-**Route:** `/lists/`
-
-**Methods:** `GET`
-
-**Purpose:** Show all to-do lists.
-
-**Sample output:**
-
-![get_lists() sample](../assets/images/fswd-intro_00.png)
+**Beispielausgabe:**  
+Rendert die `index.html` Seite.
 
 ---
 
-### `get_list_todos(list_id)`
+### `about()`
 
-**Route:** `/lists/<int:list_id>`
+**Route:** `/about`
 
-**Methods:** `GET`
+**Methoden:** `GET`
 
-**Purpose:** Retrieve all to-do items of to-do list with ID `list_id` from database and present to user.
+**Zweck:** Zeigt die "Über uns"-Seite der Anwendung.
 
-**Sample output:**
-
-![get_list_todos() sample](../assets/images/fswd-intro_02.png)
+**Beispielausgabe:**  
+Rendert die `about.html` Seite.
 
 ---
 
-## [Example, delete this section] Insert sample data
+## Authentifizierung
+
+### `login()`
+
+**Route:** `/login`
+
+**Methoden:** `GET`, `POST`
+
+**Zweck:** Ermöglicht Benutzern die Anmeldung.
+
+**Beispielausgabe:**  
+- Erfolgreiche Anmeldung: Umleitung auf die Startseite mit Flash-Nachricht "Erfolgreich eingeloggt!"  
+- Fehlgeschlagene Anmeldung: Zeigt eine Fehlermeldung "Ungültige Anmeldedaten."
+
+---
+
+### `register()`
+
+**Route:** `/register`
+
+**Methoden:** `GET`, `POST`
+
+**Zweck:** Registriert einen neuen Benutzer.
+
+**Beispielausgabe:**  
+- Erfolgreiche Registrierung: Umleitung zur Login-Seite mit Flash-Nachricht "Registrierung erfolgreich!"  
+- Fehlerhafte Registrierung: Zeigt eine Fehlermeldung.
+
+---
+
+## Lernkarten-Management
+
+### `create_flashcard()`
+
+**Route:** `/create_flashcard`
+
+**Methoden:** `GET`, `POST`
+
+**Zweck:** Erstellt eine neue Lernkarte für den eingeloggten Benutzer.
+
+**Beispielausgabe:**  
+- Erfolgreiche Erstellung: Umleitung zur Schulstufenauswahl mit Flash-Nachricht "Karteikarte erfolgreich erstellt!"  
+- Fehlerhafte Eingabe: Zeigt eine Fehlermeldung.
+
+---
+
+### `view_flashcards()`
+
+**Route:** `/view_flashcards`
+
+**Methoden:** `GET`
+
+**Zweck:** Zeigt die bekannten und unbekannten Lernkarten des Benutzers an.
+
+**Beispielausgabe:**  
+Rendert die `view_flashcards.html` Seite mit einer Liste von Lernkarten.
+
+---
+
+### `delete_flashcard(flashcard_id)`
+
+**Route:** `/delete_flashcard/<int:flashcard_id>`
+
+**Methoden:** `POST`
+
+**Zweck:** Löscht eine Lernkarte des Benutzers.
+
+**Beispielausgabe:**  
+- Erfolgreiches Löschen: Flash-Nachricht "Karteikarte erfolgreich gelöscht!"  
+- Fehlerhafte Anfrage: Umleitung zur Login-Seite, falls nicht eingeloggt.
+
+---
+
+### `mark_known(flashcard_id)`
+
+**Route:** `/mark_known/<int:flashcard_id>`
+
+**Methoden:** `POST`
+
+**Zweck:** Markiert eine Lernkarte als gelernt.
+
+**Beispielausgabe:**  
+JSON `{ "success": true }`
+
+---
+
+### `mark_unknown(flashcard_id)`
+
+**Route:** `/mark_unknown/<int:flashcard_id>`
+
+**Methoden:** `POST`
+
+**Zweck:** Markiert eine zuvor gelernte Lernkarte als unbekannt.
+
+**Beispielausgabe:**  
+JSON `{ "success": true }`
+
+---
+
+## Auswahlseiten
+
+### `select_grade()`
+
+**Route:** `/select_grade`
+
+**Methoden:** `GET`, `POST`
+
+**Zweck:** Ermöglicht dem Benutzer die Auswahl einer Schulstufe (7–10).
+
+**Beispielausgabe:**  
+Rendert die `select_grade.html` Seite mit einer Auswahl für Schulstufen.
+
+---
+
+### `select_category()`
+
+**Route:** `/select_category`
+
+**Methoden:** `GET`, `POST`
+
+**Zweck:** Ermöglicht dem Benutzer die Auswahl einer Kategorie oder das Hinzufügen einer neuen Kategorie.
+
+**Beispielausgabe:**  
+- Erfolgreiche Kategoriewahl: Umleitung zur Lernkartenübersicht.  
+- Erfolgreiches Hinzufügen: Flash-Nachricht "Neue Kategorie erfolgreich hinzugefügt!"  
+
+---
+
+### `select_flashcard_filters()`
+
+**Route:** `/select_flashcard_filters`
+
+**Methoden:** `GET`, `POST`
+
+**Zweck:** Ermöglicht die Auswahl von Lernkarten basierend auf Schulstufe und Kategorie.
+
+**Beispielausgabe:**  
+Rendert die `select_flashcard_filters.html` Seite.
+
+---
+
+## Datenbank-Verwaltung
 
 ### `run_insert_sample()`
 
 **Route:** `/insert/sample`
 
-**Methods:** `GET`
+**Methoden:** `GET`
 
-**Purpose:** Flush the database and insert sample data set
+**Zweck:** Initialisiert die Datenbank und fügt Beispieldaten für den angemeldeten Benutzer hinzu.
 
-**Sample output:**
+**Beispielausgabe:**  
+- Erfolgreiche Datenbankinitialisierung: Umleitung zur Schulstufenauswahl.  
+- Fehlgeschlagene Aktion: Flash-Nachricht "Du musst eingeloggt sein, um diese Aktion auszuführen."
 
-Browser shows: `Database flushed and populated with some sample data.`
+---
+
+### `init_db_command()`
+
+**Funktion:** Initialisiert die SQLite-Datenbank.
+
+**Zweck:** Setzt die Datenbank zurück und erstellt alle Tabellen neu.
+
+**Beispielausgabe:**  
+Konsolenausgabe: `Datenbank erfolgreich initialisiert!`
+
+---
+
+Diese Dokumentation deckt alle derzeitigen internen Funktionen und API-Routen der **StudyWizard**-Anwendung ab.
