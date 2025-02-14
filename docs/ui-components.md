@@ -3,63 +3,60 @@ title: UI Components
 nav_order: 99
 ---
 
-{: .label .label-red }
-[to be deleted]
+# UI-Komponenten
 
-{: .attention}
-> Once you are familiar with the available UI components of this template, exclude this page by changing `nav_order: 99` to `nav_exclude: true` on top of this page (line 3). Its *front matter* will then look like this:
-> ```
-> ---
-> title: UI Components
-> nav_exclude: true
-> ---
-> ```
+Die [Just the Docs Dokumentation](https://just-the-docs.github.io/just-the-docs/docs/ui-components) beschreibt weitere UI-Komponenten.
 
-# UI components
+Eine schnelle Übersicht über die Markdown-Syntax findest du [hier](https://github.com/just-the-docs/just-the-docs/blob/main/docs/index-test.md?plain=1).
 
-The [Just the Docs documentation](https://just-the-docs.github.io/just-the-docs/docs/ui-components) details more UI components.
-
-For a quick reference of the markdown syntax, visit [this page](https://github.com/just-the-docs/just-the-docs/blob/main/docs/index-test.md?plain=1).
-
-## Images
+## Bilder
 
 ```markdown
-![get_list_todos_sample](assets/images/fswd-intro_02.png)
+![Startseite](assets/images/image1.png)
 ```
 
-![get_list_todos_sample](assets/images/fswd-intro_02.png)
+### Startseite
+![Startseite](assets/images/image1.png)
 
-## Callouts
-
-{: .info }
-> This is an info callout.
-
-{: .tip }
-> This is a tip callout.
-
-{: .attention }
-> This is an attention callout.
-
-> {: .download }
-> This is a download callout.
-
-## Labels
-
-{: .label }
-[Default label]
-
-{: .label .label-green }
-[Green label]
-
-{: .label .label-red }
-[Red label]
-
-## Mermaid.js
-
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
+```markdown
+![Login-Seite](assets/images/image2.png)
 ```
 
-Visit the [Mermaid docs](https://mermaid.js.org/intro/) for a thorough description of the charting possibilities.
+### Login-Seite
+![Login-Seite](assets/images/image2.png)
+
+```markdown
+![Registrierung](assets/images/image3.png)
+```
+
+### Registrierungsseite
+![Registrierung](assets/images/image3.png)
+
+```markdown
+![Auswahl der Klassenstufe](assets/images/image4.png)
+```
+
+### Auswahl der Klassenstufe
+![Auswahl der Klassenstufe](assets/images/image4.png)
+
+```markdown
+![Auswahl der Kategorien](assets/images/image5.png)
+```
+
+### Auswahl der Kategorien
+![Auswahl der Kategorien](assets/images/image5.png)
+
+```markdown
+![Karteikartenanzeige](assets/images/image6.png)
+```
+
+### Karteikartenanzeige
+![Karteikartenanzeige](assets/images/image6.png)
+
+```markdown
+![Test in Bearbeitung](assets/images/image7.png)
+```
+
+### Test in Bearbeitung
+![Test in Bearbeitung](assets/images/image7.png)
+
