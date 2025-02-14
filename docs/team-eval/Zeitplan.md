@@ -1,6 +1,6 @@
-title: Projektzeitplan
-parent: Projektplanung
-nav_order: 3
+title: Peer Review
+parent: Team Evaluation
+nav_order: 4
 ---
 {: .label }
 [Yahya Ali, Anas Louh]
