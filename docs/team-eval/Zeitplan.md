@@ -28,7 +28,7 @@ nav_order: 4
 | 04.11 - 10.11   | Einarbeitung in GitHub und Versionskontrolle<br>Erlernen des Umgangs mit GitHub und der Versionierung von Code. Erstellung des ersten Repositories und Übung mit Pull Requests. |
 | 11.11 - 17.11   | Programmierung der grundlegenden Funktionen<br>Erstellung des Grundgerüsts der Webapp, Implementierung der ersten grundlegenden Funktionen (Login , registrieren, Daten speichern). |
 | 18.11 - 22.11   | Fehlerbehebung und Optimierung<br>Testen der grundlegenden Funktionen, Fehlerbehebung und Optimierung des Codes. Vorbereitung der Dokumentation. |
-| 13.12 - 14.12   | Nach dem Termin für den Zwischenstand haben wir die erste suche nach Methoden für die Umsetzung eines richtigen Karteikartensystems gesucht da wir den Tipp von Herrn Eck bekommen haben . |
+| 13.12 - 14.12   | Nach dem Termin für den Zwischenstand haben wir, die erste suche nach Methoden für die Umsetzung eines richtigen Karteikartensystems gesucht, da wir den Tipp von Herrn Eck bekommen haben . |
 | 18.12 - 20.12   | Erste Änderungdes  des Designs für eine bessere Benutzerfreundlichkeit  . |
 | 10.01 - 17.01   | Präsentations Vorbereitung und Präsenation . |
 | 20.01 - 25.01   | Start der implimentierung für den Testmodus und Fertigstellung des Testmodus . |
