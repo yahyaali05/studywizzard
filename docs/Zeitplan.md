@@ -1,5 +1,5 @@
 title: Projektzeitplan
-nav_order: 1
+nav_order: 5
 ---
 
 {: .label }
