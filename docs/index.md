@@ -20,17 +20,17 @@ Außerdem sind die Vokabeln in *Kategorien* wie Sport, Haushalt usw. unterteilt,
 
 ## Team members
 
-### [Yahya Ali]
+### Yahya Ali
 
 Aufgaben  
-: War verantwortlich für die Entwicklung der app.py. Er implementierte die Routen und passte die Datenbankanbindung entsprechend an. Zudem arbeitete er an einem Teil der HTML-Dateien und entwickelte die Logik zur Verwaltung der Karteikarten.
+: War verantwortlich für die Entwicklung der App Logik. Er implementierte die Routen und passte die Datenbankanbindung entsprechend an. Zudem arbeitete er an einem Teil der HTML-Dateien und entwickelte die Logik zur Verwaltung der Karteikarten.
 
 Matr.-Nr.  
 : 77211985315 
 
-### [Anas Louh]
+### Anas Louh
 Afugeben
-: übernahm die Verwaltung der Datenbank, trug zur Gestaltung der HTML-Seiten bei und kümmerte sich um das Design der Anwendung. Zusätzlich entwickelte er die Testfunktionen, um die Funktionalität und Stabilität der App sicherzustellen.
+: Übernahm die Verwaltung der Datenbank, trug zur Gestaltung der HTML-Seiten bei und kümmerte sich um das Design der Anwendung. Zusätzlich entwickelte er die Testfunktionen, um die Funktionalität und Stabilität der App sicherzustellen.
 
 Matr.-Nr.
 :77211987850
